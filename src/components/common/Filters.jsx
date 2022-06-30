@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
 import { applyFilter, resetFilter } from 'redux/actions/filterActions';
 import { selectMax, selectMin } from 'selectors/selector';
-import PriceRange from './PriceRange';
+import YearRange from './YearRange';
 
 const Filters = ({ closeModal }) => {
   const { filter, isLoading, products } = useSelector((state) => ({
@@ -15,9 +15,9 @@ const Filters = ({ closeModal }) => {
     products: state.products.items
   }));
   const [field, setFilter] = useState({
-    brand: filter.brand,
-    minPrice: filter.minPrice,
-    maxPrice: filter.maxPrice,
+    artist: filter.artist,
+    minYear: filter.minYear,
+    maxYear: filter.maxYear,
     sortBy: filter.sortBy
   });
   const dispatch = useDispatch();
@@ -39,14 +39,14 @@ const Filters = ({ closeModal }) => {
   }, [filter]);
 
 
-  const onPriceChange = (minVal, maxVal) => {
-    setFilter({ ...field, minPrice: minVal, maxPrice: maxVal });
+  const onYearChange = (minVal, maxVal) => {
+    setFilter({ ...field, minYear: minVal, maxYear: maxVal });
   };
 
-  const onBrandFilterChange = (e) => {
+  const onartistFilterChange = (e) => {
     const val = e.target.value;
 
-    setFilter({ ...field, brand: val });
+    setFilter({ ...field, artist: val });
   };
 
   const onSortFilterChange = (e) => {
@@ -56,7 +56,7 @@ const Filters = ({ closeModal }) => {
   const onApplyFilter = () => {
     const isChanged = Object.keys(field).some((key) => field[key] !== filter[key]);
 
-    if (field.minPrice > field.maxPrice) {
+    if (field.minYear > field.maxYear) {
       return;
     }
 
@@ -68,7 +68,7 @@ const Filters = ({ closeModal }) => {
   };
 
   const onResetFilter = () => {
-    const filterFields = ['brand', 'minPrice', 'maxPrice', 'sortBy'];
+    const filterFields = ['artist', 'minYear', 'maxYear', 'sortBy'];
 
     if (filterFields.some((key) => !!filter[key])) {
       dispatch(resetFilter());
@@ -80,23 +80,21 @@ const Filters = ({ closeModal }) => {
   return (
     <div className="filters">
       <div className="filters-field">
-        <span>Brand</span>
+        <span>artist</span>
         <br />
         <br />
         {products.length === 0 && isLoading ? (
           <h5 className="text-subtle">Loading Filter</h5>
         ) : (
           <select
-            className="filters-brand"
-            value={field.brand}
+            className="filters-artist"
+            value={field.artist}
             disabled={isLoading || products.length === 0}
-            onChange={onBrandFilterChange}
+            onChange={onartistFilterChange}
           >
-            <option value="">All Brands</option>
-            <option value="salt">Salt Maalat</option>
-            <option value="betsin">Betsin Maalat</option>
-            <option value="black">Black Kibal</option>
-            <option value="sexbomb">Sexbomb</option>
+            <option value="">All artists</option>
+            <option value="David Smith">David Smith</option>
+            <option value="Roy Lichtenstein">Roy Lichtenstein</option>
           </select>
         )}
       </div>
@@ -113,26 +111,26 @@ const Filters = ({ closeModal }) => {
           <option value="">None</option>
           <option value="name-asc">Name Ascending A - Z</option>
           <option value="name-desc">Name Descending Z - A</option>
-          <option value="price-desc">Price High - Low</option>
-          <option value="price-asc">Price Low - High</option>
+          <option value="Year-desc">Year High - Low</option>
+          <option value="Year-asc">Year Low - High</option>
         </select>
       </div>
       <div className="filters-field">
-        <span>Price Range</span>
+        <span>Year Produced </span>
         <br />
         <br />
         {(products.length === 0 && isLoading) || max === 0 ? (
           <h5 className="text-subtle">Loading Filter</h5>
         ) : products.length === 1 ? (
-          <h5 className="text-subtle">No Price Range</h5>
+          <h5 className="text-subtle">No Year Range</h5>
         ) : (
-          <PriceRange
+          <YearRange
             min={min}
             max={max}
-            initMin={field.minPrice}
-            initMax={field.maxPrice}
+            initMin={field.minYear}
+            initMax={field.maxYear}
             isLoading={isLoading}
-            onPriceChange={onPriceChange}
+            onYearChange={onYearChange}
             productsCount={products.length}
           />
         )}

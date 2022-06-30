@@ -7,7 +7,7 @@ import { applyFilter } from 'redux/actions/filterActions';
 
 const ProductAppliedFilters = ({ filteredProductsCount }) => {
   const filter = useSelector((state) => state.filter, shallowEqual);
-  const fields = ['brand', 'minPrice', 'maxPrice', 'sortBy', 'keyword'];
+  const fields = ['artist', 'minYear', 'maxYear', 'sortBy', 'keyword'];
   const isFiltered = fields.some((key) => !!filter[key]);
   const dispatch = useDispatch();
 
@@ -15,12 +15,12 @@ const ProductAppliedFilters = ({ filteredProductsCount }) => {
     dispatch(applyFilter({ keyword: '' }));
   };
 
-  const onRemovePriceRangeFilter = () => {
-    dispatch(applyFilter({ minPrice: 0, maxPrice: 0 }));
+  const onRemoveYearRangeFilter = () => {
+    dispatch(applyFilter({ minYear: 0, maxYear: 0 }));
   };
 
-  const onRemoveBrandFilter = () => {
-    dispatch(applyFilter({ brand: '' }));
+  const onRemoveartistFilter = () => {
+    dispatch(applyFilter({ artist: '' }));
   };
 
   const onRemoveSortFilter = () => {
@@ -51,12 +51,12 @@ const ProductAppliedFilters = ({ filteredProductsCount }) => {
             </div>
           </div>
         )}
-        {filter.brand && (
+        {filter.artist && (
           <div className="pill-wrapper">
-            <span className="d-block">Brand</span>
+            <span className="d-block">artist</span>
             <div className="pill padding-right-l">
-              <h5 className="pill-content margin-0">{filter.brand}</h5>
-              <div className="pill-remove" onClick={onRemoveBrandFilter} role="presentation">
+              <h5 className="pill-content margin-0">{filter.artist}</h5>
+              <div className="pill-remove" onClick={onRemoveartistFilter} role="presentation">
                 <h5 className="margin-0 text-subtle">
                   <CloseCircleOutlined />
                 </h5>
@@ -64,19 +64,19 @@ const ProductAppliedFilters = ({ filteredProductsCount }) => {
             </div>
           </div>
         )}
-        {(!!filter.minPrice || !!filter.maxPrice) && (
+        {(!!filter.minYear || !!filter.maxYear) && (
           <div className="pill-wrapper">
-            <span className="d-block">Price Range</span>
+            <span className="d-block">Year Range</span>
             <div className="pill padding-right-l">
               <h5 className="pill-content margin-0">
                 $
-                {filter.minPrice}
+                {filter.minYear}
                 - $
-                {filter.maxPrice}
+                {filter.maxYear}
               </h5>
               <div
                 className="pill-remove"
-                onClick={onRemovePriceRangeFilter}
+                onClick={onRemoveYearRangeFilter}
                 role="presentation"
               >
                 <h5 className="margin-0 text-subtle">
@@ -91,10 +91,10 @@ const ProductAppliedFilters = ({ filteredProductsCount }) => {
             <span className="d-block">Sort By</span>
             <div className="pill padding-right-l">
               <h5 className="pill-content margin-0">
-                {filter.sortBy === 'price-desc'
-                  ? 'Price High - Low'
-                  : filter.sortBy === 'price-asc'
-                    ? 'Price Low - High'
+                {filter.sortBy === 'Year-desc'
+                  ? 'Year High - Low'
+                  : filter.sortBy === 'Year-asc'
+                    ? 'Year Low - High'
                     : filter.sortBy === 'name-desc'
                       ? 'Name Z - A'
                       : 'Name A - Z'}

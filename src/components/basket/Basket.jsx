@@ -12,9 +12,9 @@ import { clearBasket } from 'redux/actions/basketActions';
 
 const Basket = () => {
   const { isOpenModal, onOpenModal, onCloseModal } = useModal();
-  const { basket, user } = useSelector((state) => ({
+  const { basket} = useSelector((state) => ({
     basket: state.basket,
-    user: state.auth
+
   }));
   const history = useHistory();
   const { pathname } = useLocation();
@@ -22,8 +22,8 @@ const Basket = () => {
   const didMount = useDidMount();
 
   useEffect(() => {
-    if (didMount && firebase.auth.currentUser && basket.length !== 0) {
-      firebase.saveBasketItems(basket, firebase.auth.currentUser.uid)
+    if (didMount && basket.length !== 0) {
+      firebase.saveBasketItems(basket)
         .then(() => {
           console.log('Item saved to basket');
         })
@@ -34,7 +34,7 @@ const Basket = () => {
   }, [basket.length]);
 
   const onCheckOut = () => {
-    if ((basket.length !== 0 && user)) {
+    if ((basket.length !== 0 )) {
       document.body.classList.remove('is-basket-open');
       history.push(CHECKOUT_STEP_1);
     } else {
@@ -54,7 +54,7 @@ const Basket = () => {
     }
   };
 
-  return user && user.role === 'ADMIN' ? null : (
+  return (
     <Boundary>
       <Modal
         isOpen={isOpenModal}
@@ -129,9 +129,6 @@ const Basket = () => {
         <div className="basket-checkout">
           <div className="basket-total">
             <p className="basket-total-title">Subtotal Amout:</p>
-            <h2 className="basket-total-amount">
-              {displayMoney(calculateTotal(basket.map((product) => product.price * product.quantity)))}
-            </h2>
           </div>
           <button
             className="basket-checkout-button button"

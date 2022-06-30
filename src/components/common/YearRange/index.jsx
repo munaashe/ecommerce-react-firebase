@@ -13,8 +13,8 @@ const sliderStyle = {
   width: '100%'
 };
 
-const PriceRange = ({
-  min, max, initMin, initMax, productsCount, onPriceChange
+const YearRange = ({
+  min, max, initMin, initMax, productsCount, onYearChange
 }) => {
   const [state, setState] = useState({
     domain: [min, max],
@@ -36,7 +36,7 @@ const PriceRange = ({
     setState(() => ({
       ...state, values, inputMin: values[0], inputMax: values[1]
     }));
-    if (values[0] < values[1]) onPriceChange(...values);
+    if (values[0] < values[1]) onYearChange(...values);
   };
 
 
@@ -120,18 +120,18 @@ const PriceRange = ({
   );
 };
 
-PriceRange.defaultProps = {
-  initMin: undefined,
-  initMax: undefined
+YearRange.defaultProps = {
+  initMin: 1000,
+  initMax: 2022
 };
 
-PriceRange.propTypes = {
+YearRange.propTypes = {
   initMin: PropType.number,
   initMax: PropType.number,
   min: PropType.number.isRequired,
   max: PropType.number.isRequired,
   productsCount: PropType.number.isRequired,
-  onPriceChange: PropType.func.isRequired
+  onYearChange: PropType.func.isRequired
 };
 
-export default PriceRange;
+export default YearRange;

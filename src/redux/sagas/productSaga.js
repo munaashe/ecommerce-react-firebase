@@ -1,12 +1,7 @@
 /* eslint-disable indent */
 import {
-  ADD_PRODUCT,
-  EDIT_PRODUCT,
-  GET_PRODUCTS,
-  REMOVE_PRODUCT,
-  SEARCH_PRODUCT
+  GET_PRODUCTS
 } from 'constants/constants';
-import { ADMIN_PRODUCTS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import {
   all, call, put, select
@@ -15,10 +10,7 @@ import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
 import {
-  addProductSuccess,
-  clearSearchState, editProductSuccess, getProductsSuccess,
-  removeProductSuccess,
-  searchProductSuccess
+   getProductsSuccess
 } from '../actions/productActions';
 
 function* initRequest() {

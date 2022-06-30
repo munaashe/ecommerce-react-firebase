@@ -8,9 +8,8 @@ const ProductGrid = ({ products }) => {
 
   return (
     <div className="product-grid">
-      {products.length === 0 ? new Array(12).fill({}).map((product, index) => (
+      {products.length === 0 ? new Array(6).fill({}).map((product, index) => (
         <ProductItem
-          // eslint-disable-next-line react/no-array-index-key
           key={`product-skeleton ${index}`}
           product={product}
         />
@@ -27,7 +26,6 @@ const ProductGrid = ({ products }) => {
 };
 
 ProductGrid.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   products: PropType.array.isRequired
 };
 

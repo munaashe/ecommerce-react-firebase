@@ -47,7 +47,6 @@ const ProductList = (props) => {
   return (
     <Boundary>
       {children}
-      {/* Show 'Show More' button if products length is less than total products */}
       {products.items.length < products.total && (
         <div className="d-flex-center padding-l">
           <button

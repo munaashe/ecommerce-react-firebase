@@ -1,7 +1,6 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { BasketItemControl } from 'components/basket';
 import { ImageLoader } from 'components/common';
-import { displayMoney } from 'helpers/utils';
 import PropType from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -20,7 +19,7 @@ const BasketItem = ({ product }) => {
           <ImageLoader
             alt={product.name}
             className="basket-item-img"
-            src={product.image}
+            src={product.image} 
           />
         </div>
         <div className="basket-item-details">
@@ -55,7 +54,6 @@ const BasketItem = ({ product }) => {
           </div>
         </div>
         <div className="basket-item-price">
-          <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
         </div>
         <button
           className="basket-item-remove button button-border button-border-gray button-small"
@@ -73,7 +71,7 @@ BasketItem.propTypes = {
   product: PropType.shape({
     id: PropType.string,
     name: PropType.string,
-    brand: PropType.string,
+    artist: PropType.string,
     price: PropType.number,
     quantity: PropType.number,
     maxQuantity: PropType.number,

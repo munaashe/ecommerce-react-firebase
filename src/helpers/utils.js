@@ -15,15 +15,6 @@ export const displayDate = (timestamp) => {
   return `${monthNames[monthIndex]} ${day}, ${year}`;
 };
 
-export const displayMoney = (n) => {
-  const format = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  });
-
-  // or use toLocaleString()
-  return format.format(n);
-};
 
 export const calculateTotal = (arr) => {
   if (!arr || arr?.length === 0) return 0;

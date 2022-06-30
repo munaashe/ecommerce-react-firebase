@@ -1,6 +1,6 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 2fr));
   grid-gap: $s-size;
   justify-content: center;
 
@@ -142,7 +142,7 @@
   text-overflow: ellipsis; 
 }
 
-.product-card-brand {
+.product-card-artist {
   margin-top: 0;
   font-size: $font-small;
   color: $gray-20;

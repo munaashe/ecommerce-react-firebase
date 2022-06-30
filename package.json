@@ -1,8 +1,8 @@
 {
-  "name": "ecommerce-react",
-  "version": "1.2.0",
+  "name": "bejamas",
+  "version": "0.1.0",
   "main": "index.js",
-  "author": "Julius Guevarra",
+  "author": "Denis SiD",
   "keywords": [
     "react-webpack",
     "boilerplate",
@@ -31,9 +31,6 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
     "dotenv": "^8.2.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
-    "enzyme-to-json": "^3.6.2",
     "eslint": "^7.25.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-loader": "^4.0.2",
@@ -48,7 +45,6 @@
     "jest": "^26.6.3",
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^1.6.0",
-    "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "raf": "^3.4.1",
     "sass-loader": "^11.0.1",
@@ -81,6 +77,7 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.52.2",
     "uuid": "^8.3.2",
     "webfontloader": "^1.6.28",
     "yup": "^0.32.9"
